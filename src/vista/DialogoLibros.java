@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador;
 import modelo.Editorial;
-import modelo.Libro;
+import modelo.Departamento;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -133,10 +133,10 @@ public class DialogoLibros extends JDialog {
 		}
 	}
 
-	public void setListaLibros(ArrayList<Libro> lista) {
+	public void setListaLibros(ArrayList<Departamento> lista) {
 		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		modelo.setRowCount(0);
-		for (Libro libro : lista) {
+		for (Departamento libro : lista) {
 			Object [] fila = {
 				libro.getIsbn(), libro.getTitulo(), libro.getCodEditorial(), libro.getAnio(), 				libro.getNum_pags(), libro.getPrecio(), libro.getCantidad(), libro.getPrecioCD()
 			};

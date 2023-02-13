@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import dao.EditorialDAO;
 import dao.LibroDAO;
 import modelo.Editorial;
-import modelo.Libro;
+import modelo.Departamento;
 import vista.DialogoEditoriales;
 import vista.DialogoLibros;
 import vista.NuevaEditorial;
@@ -63,7 +63,7 @@ public class Controlador {
 		dialogoEditoriales.setVisible(true);
 	}
 	public void mostrarLibros() {
-		ArrayList<Libro> lista = libroDAO.obtenerTodosLibros();
+		ArrayList<Departamento> lista = libroDAO.obtenerTodosLibros();
 		dialogoLibros.setListaLibros(lista); //esta lista la creamos para borrar la antigua y que vaya pintando la nueva lista. siempre la misma ventana, solo cambia la lista que queremos que nos pinte
 		dialogoLibros.setVisible(true);
 	}
@@ -75,6 +75,9 @@ public class Controlador {
 	
 	public void mostrarNuevoLibro() {
 		nuevoLibro.setLibro(null);
+		//la lista de editoriales se la paso a la ventana de nuevo libro para poder recoger todas las editoriales en un combobox
+		ArrayList<Editorial> lista = editorialDAO.obtenerTodasEditoriales();
+		//this.nuevoLibro.setListaEditoriales(lista);
 		nuevoLibro.setVisible(true);
 	}
 	
@@ -88,7 +91,7 @@ public class Controlador {
 		}
 	}
 	
-	public void insertarLibro(Libro li) {
+	public void insertarLibro(Departamento li) {
 		int res=libroDAO.insertarLibro(li);
 		if (res==0) {
 			JOptionPane.showMessageDialog(nuevoLibro, "Error: no se ha podido insertar el libro.");
@@ -105,7 +108,7 @@ public class Controlador {
 	}
 	
 	public void mostrarActualizarLibro(String isbn) {
-		Libro li = libroDAO.obtenerUnLibro(isbn);
+		Departamento li = libroDAO.obtenerUnLibro(isbn);
 		nuevoLibro.setLibro(li);
 		nuevoLibro.setVisible(true);
 	}
@@ -121,7 +124,7 @@ public class Controlador {
 		mostrarEditoriales();
 	}
 
-	public void actualizarLibro(Libro li) {
+	public void actualizarLibro(Departamento li) {
 		int res=libroDAO.actualizarLibro(li);
 		if (res==0) {
 			JOptionPane.showMessageDialog(nuevoLibro, "Error: no se ha podido actualizar.");

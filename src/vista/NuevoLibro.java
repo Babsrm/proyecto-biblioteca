@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador;
 import modelo.Editorial;
-import modelo.Libro;
+import modelo.Departamento;
 import net.miginfocom.swing.MigLayout;
 
 public class NuevoLibro extends JFrame {
@@ -27,7 +27,7 @@ public class NuevoLibro extends JFrame {
 	private JTextField txtTitulo;
 	private JTextField txtAnio;
 	private Controlador controlador;
-	private Libro libro;
+	private Departamento libro;
 	private JLabel lblCabecera;
 	private JTextField txtIsbn;
 	private JTextField txtCodEd;
@@ -173,7 +173,7 @@ public class NuevoLibro extends JFrame {
 				precioCD = Float.parseFloat(txtPrecioCD.getText());
 			}
 						
-			Libro li = new Libro();
+			Departamento li = new Departamento();
 			
 			li.setIsbn(isbn);
 			li.setTitulo(titulo);
@@ -203,10 +203,9 @@ public class NuevoLibro extends JFrame {
 		this.controlador = controlador;
 	}
 
-	public void setLibro(Libro li) {
+	public void setLibro(Departamento li) {
 		libro = li;
 		if (li!=null) {
-		//	isbn, titulo, codEditorial, anio, num_pags, precio, cantidad, precioCD
 			txtIsbn.setText(libro.getIsbn());
 			txtTitulo.setText(libro.getTitulo());
 			txtCodEd.setText(""+libro.getCodEditorial());

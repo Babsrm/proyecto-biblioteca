@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.Objects;
 
-public class Libro {
+public class Departamento {
 	//me traigo los campos de la tabla como variables
 	private String isbn;
 	private String titulo;
@@ -13,7 +13,7 @@ public class Libro {
 	private int cantidad;
 	private float precioCD;
 	
-	public Libro() {
+	public Departamento() {
 		this.isbn = "";
 		this.titulo = "";
 		this.codEditorial = 0;
@@ -24,7 +24,7 @@ public class Libro {
 		this.precioCD = 0;
 	}
 
-	public Libro(String isbn, String titulo, int codEditorial, int anio, int num_pags, float precio, int cantidad, float precioCD) {
+	public Departamento(String isbn, String titulo, int codEditorial, int anio, int num_pags, float precio, int cantidad, float precioCD) {
 		super();
 		this.isbn = isbn;
 		this.titulo = titulo;
@@ -113,7 +113,7 @@ public class Libro {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Libro other = (Libro) obj;
+		Departamento other = (Departamento) obj;
 		return Objects.equals(isbn, other.isbn);
 	}
 

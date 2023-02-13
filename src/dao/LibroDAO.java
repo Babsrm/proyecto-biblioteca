@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import conexion.ConexionBD;
 import modelo.Editorial;
-import modelo.Libro;
+import modelo.Departamento;
 
 public class LibroDAO {
 
@@ -25,13 +25,13 @@ public class LibroDAO {
 
     //conecta con la base de datos, itera por cada fila de la tabla y me devuelve una lista con los resultados
     //se recogen todos los datos de la tabla
-    public ArrayList<Libro> obtenerTodosLibros() {
+    public ArrayList<Departamento> obtenerTodosLibros() {
     	// Obtenemos una conexion a la base de datos. 
     	//estas tres lineas siempre son iguales
 		Connection con = conexion.getConexion(); //obtiene un objeto Connection para conectar a la DB
 		Statement consulta = null; //me permite recoger la sentecia de select
 		ResultSet resultado = null; //me permite recojer los resultados
-		ArrayList<Libro> lista = new ArrayList<Libro>();
+		ArrayList<Departamento> lista = new ArrayList<Departamento>();
 		
 		try {
 			consulta = con.createStatement();
@@ -48,7 +48,7 @@ public class LibroDAO {
 				int cantidad = resultado.getInt("cantidad");
 				float precioCD = resultado.getFloat("preciocd");
 				
-				Libro libro = new Libro(isbn, titulo, codEditorial, anio, num_pags, precio, cantidad, precioCD);
+				Departamento libro = new Departamento(isbn, titulo, codEditorial, anio, num_pags, precio, cantidad, precioCD);
 				lista.add(libro);
 			}
 			
@@ -70,11 +70,11 @@ public class LibroDAO {
     }
 
 
-    public Libro obtenerUnLibro(String isbn) {
+    public Departamento obtenerUnLibro(String isbn) {
 		Connection con = conexion.getConexion();
 		PreparedStatement consulta = null;
 		ResultSet resultado = null;
-		Libro libro=null;
+		Departamento libro=null;
 		
 		try {
 			consulta = con.prepareStatement("select * from libros "
@@ -91,7 +91,7 @@ public class LibroDAO {
 				int cantidad = resultado.getInt("cantidad");
 				float precioCD = resultado.getFloat("preciocd");
 				
-				libro = new Libro(isbn, titulo, codEditorial, anio, num_pags, precio, cantidad, precioCD);
+				libro = new Departamento(isbn, titulo, codEditorial, anio, num_pags, precio, cantidad, precioCD);
 			}
 			
 		} catch (SQLException e) {
@@ -110,7 +110,7 @@ public class LibroDAO {
 		return libro;
     }
 
-    public int insertarLibro(Libro libro) {
+    public int insertarLibro(Departamento libro) {
     	// Obtenemos una conexion a la base de datos.
 		Connection con = conexion.getConexion();
 		PreparedStatement consulta = null;
@@ -146,7 +146,7 @@ public class LibroDAO {
 		return resultado;
     }
     
-    public int actualizarLibro(Libro libro) {
+    public int actualizarLibro(Departamento libro) {
 		Connection con = conexion.getConexion();
 		PreparedStatement consulta = null;
 		int resultado=0;
